@@ -1,0 +1,64 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Customer {% endblock %}
+
+{% block body %}
+	
+
+	<div>
+		
+		<div class="home_title">
+			<p> <span class="glyphicon glyphicon-th-large">  </span> Admin actions </p>
+		</div>
+
+
+		{% if all_history %}
+			
+
+			<div class="row">
+				{% for l in all_history %}
+					<div class="col-md-4">
+
+						{% if l.action_flag == 1 %}
+							<p> <span class="glyphicon glyphicon-plus" style="color:#0eff00;"></span> <span style="color:#447e9b;">{{ l.user.username }}, <span style="color:#337ab7 !important;">Description:</span> {{ l.object_repr }}, <span style="color:#337ab7 !important;">Table:</span> {{ l.content_type }}, <span style="font-style: italic;">{{ l.action_time }} </span></span> </p>
+						{% elif l.action_flag == 2 %}
+							<p><span class="glyphicon glyphicon-pencil" style="color:#dcdc37;"></span> {{ l.user.username }}, <span style="color:#337ab7 !important;">Description:</span> {{ l.object_repr }}, <span style="color:#337ab7 !important;">Table:</span> {{ l.content_type }}, <span style="font-style: italic;">{{ l.action_time }}</span> </p>
+						{% elif l.action_flag == 3 %}
+							<p><span class="glyphicon glyphicon-remove" style="color:red;"></span> {{ l.user.username }}, <span style="color:#337ab7 !important;">Description:</span> {{ l.object_repr }}, <span style="color:#337ab7 !important;">Table:</span> {{ l.content_type }}, <span style="font-style: italic;">{{ l.action_time }}</span> </p>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+			
+		{% else %}
+			<div style="width: 100%; text-align: center;">
+				<h4 style="color: red;">No history today.</h4>
+			</div>
+		{% endif %}
+
+	</div>
+
+
+
+	<div class="pagination_index">
+		{% if is_paginated %}
+				<ul class="pagination" style="margin:0px 0px !important">
+			{% if page_obj.has_previous %}
+			    <li>
+			        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+			    </li>
+			{% if page_obj.has_next %}
+			    <li>
+			        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		
+		{% endif %}
+	</div>
+
+{% endblock %}

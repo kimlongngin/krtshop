@@ -1,0 +1,118 @@
+{% extends 'product/base.html' %}
+
+{% block body %}
+	{% if products %}
+		{% for product in products %}
+			<div class="row mytop" >
+
+				<div class="col-md-7" style="text-align: center;">
+					
+					{% if product.default_image %}
+						<input type="hidden" value = "{{ product.id }}" id="productID" name ="productName">
+						<img src = "../../../{{ product.default_image.url }}" class="img-responsive detail_image_size" id="imgdetail" name="imgdetail">
+					{% endif %}
+				<!-- 	<a href="" class="btn btn-default order_button" style="width: 180px; margin-left: auto; margin-right: auto;"> Order </a> -->
+				</div>
+
+	  			<div class="col-md-5">
+	  				<div style="padding-bottom: 5px; border-bottom: 1px solid #f1f1f1;">
+		  				<p class="product_title_detail" style="margin-bottom: 25px;"> {{ product.name }} </p>
+		  					<p> 
+		  						<span class="product_reivew "> <span class="glyphicon glyphicon-eye-open"></span> {{ product.review | add:1 }} custom reviews </span>  
+		  					</p>
+					</div>
+
+					<div>
+						{% if product.special_price and product.special_price > 0 %}
+							<p style="margin-top:10px;"> <span style="color:#EA9D0A; font-weight: bold;">Price</span>: <span style="text-decoration: line-through">${{ product.price |floatformat:2 }}</span>
+							        			<span style="color:red;">${{ product.special_price |floatformat:2 }} </span></p>
+						{% else %}
+							<p style="margin-top:10px;"><span style="color:#EA9D0A; font-weight: bold;">Price</span>: ${{ product.price }}</p>
+						{% endif %}
+							<p><span style="color:#EA9D0A; font-weight: bold;">Product ID</span>: {{ product.product_number }}</p>
+					</div>
+
+					<div>
+						<p class="product_title_detail">Product detail</p>					
+						<p> {{ product.description }} </p>
+					</div>
+	  			</div>
+			</div>
+
+			{% if product.subproductimage_set.all.count > 0 %}
+				<div class="product_title_more_detail"> 
+						<p>More detail</p>
+				</div>
+
+				<div class = "row" style="margin-bottom: 20px; margin:auto; ">
+					
+						{% for j in product.subproductimage_set.all  %}
+							{% if j.is_status == True %}
+								<div class="col-md-6" style="margin-bottom: 20px; border: 0px solid red;" id="id_subproduct{{j.id}}">
+
+									<!-- <p class="bg-primary sub_title"> {{ j.name }} </p> -->
+									<img src = "../../../{{ j.sub_image.url }}" class="img-rounded img-responsive detail_sub_image_size" id="imgdetail" name="imgdetail" style="margin:auto;">
+									<p class="sub_title" style="margin:auto;text-align: center;"> {{ j.name }} </p>
+									<p class="text-justify" style="padding-top:5px; text-align: center;"> {{ j.description }} </p>
+
+									<!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									  <div class="panel panel-default">
+									    <div class="panel-heading" role="tab" id="headingThree">
+									      <h4 class="panel-title">
+									        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									          <p class="sub_title"> {{ j.name }} </p>
+									        </a>
+									      </h4>
+									    </div>
+									    
+									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+									      <div class="panel-body">
+									       		<p class="text-justify" style="padding-top:5px;"> {{ j.description }} </p>
+									      </div>
+									    </div>
+									  </div>
+									</div> -->
+
+
+								</div>
+							{% endif %}
+						{% endfor %}
+					
+				</div>
+			{% endif %}
+
+			<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+			
+		{% endfor %}
+
+	{% else %}
+		<h2>Form</h2>
+	{% endif %}
+
+
+	{% block javascript %}
+		<script type="text/javascript">
+			// When the user scrolls down 20px from the top of the document, show the button
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+			  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			    document.getElementById("myBtn").style.display = "block";
+			  } else {
+			    document.getElementById("myBtn").style.display = "none";
+			  }
+			}
+
+			// When the user clicks on the button, scroll to the top of the document
+			function topFunction() {
+			  document.body.scrollTop = 0;
+			  document.documentElement.scrollTop = 0;
+			}
+
+			$('#myCollapsible').collapse({
+			  toggle: false
+			})
+			</script>
+	{% endblock %}
+
+{% endblock %}

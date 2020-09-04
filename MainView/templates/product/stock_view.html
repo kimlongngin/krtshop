@@ -1,0 +1,93 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Product in stock {% endblock %}
+
+{% block body %}
+	{% if all_product_in_stock %}
+
+	<div>
+		<div class="home_title">
+			<p> <span class="glyphicon glyphicon-book">  </span> Stock inventory </p>
+		</div>
+	</div>
+
+	<!-- <div class="bs-callout bs-callout-danger" id="callout-tables-striped-ie8"> -->
+	<div>
+	    
+		<div class="bs-example" data-example-id="striped-table">
+		    <table class="table table-striped">
+		      <thead>
+		        <!-- <tr style="background-color: #1b809e; color: white; height: 45px; font-size: 16px;"> -->
+		        <tr>
+		          <th>No</th>
+		          <th>Code</th>
+		          <th>Name</th>
+		          <th>Product type</th>
+		          <th>Unit</th>
+		          <th>Qty/unit</th>
+		          <th>Sub product</th>
+		          <th>Price</th>
+		          <th>Special price</th>		      
+		          <th>Remaining</th>
+
+		        
+		        </tr>
+		      </thead>
+		      
+
+		      <tbody>
+				{% for stock in all_product_in_stock %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td scope="row"> {{ stock.product_code }} </td>
+						<td> {{ stock.name }} </td>
+						<td> {{ stock.product_type }} </td>
+						<td> {{ stock.iunit }} </td>
+						<td> {{ stock.product_per_amount }} </td>
+						<td> {{ stock.sub_amount }} </td>
+						<td> ${{ stock.price |floatformat:2 }} </td>
+						<td> ${{ stock.special_price |floatformat:2 }} </td>
+						
+						<td> {{ stock.total_product }} </td>
+					</tr>
+				{% endfor %}
+		      </tbody>
+		    </table>
+		</div>
+	</div>
+	
+	<div style="margin-bottom: 20px;">
+		<a href = "{% url 'product:export_stock' %}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Export</a>
+	</div>
+
+{% else %}
+	<div class="row">
+		<div>
+			<p class="stock_title">No product in stock</p>
+		</div>
+	</div>
+{% endif %}
+
+<div class="pagination_index">
+				
+	{% if is_paginated %}
+	<hr>
+		<ul class="pagination" style="margin:0px 0px !important">
+		{% if page_obj.has_previous %}
+		    <li>
+		        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+		    </li>
+		{% endif %}
+		    <li class="">
+		        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+		    </li>
+		{% if page_obj.has_next %}
+		    <li>
+		        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+		    </li>
+		{% endif %}
+		</ul>
+	
+	{% endif %}
+</div>
+{% endblock %}

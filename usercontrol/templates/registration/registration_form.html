@@ -1,0 +1,42 @@
+{% extends 'product/base.html' %}
+{% block title %} Registration {% endblock %}
+
+
+{% block body %}
+	{% if user.is_authenticated %}
+		<h1> User already registered !!! </h1>
+	{% else %}
+	
+		<div class="container">
+		<!-- <div class="container-fluid"> -->
+			<div class="align-items-center">
+				<div class="row">
+					<div id="loginbox signup_div_wrapper" style="margin-top:10px;margin-bottom:10px;border: 0px solid red;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">        <div style="text-align: center;">
+						<img class="img-fluid mx-auto d-block mb-3" src="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/images/elements/bootstrap-logo.svg" alt="">
+						</div>	
+						    <h1 class="mb-1 text-center">Sign up</h1>
+						    <p class="fs-14 text-gray text-center mb-5">Sign up for posting and finding job.</p>
+						
+						<form class="form-horizontal needs-validation" action="" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							
+							{% include 'registration/form_template.html' %}
+
+							<div class="form-group">
+								<div>
+									<button type="submit" class="btn btn-register btn-brand btn-block btn-lg mb-4 mt-3"> Submit</button>
+								</div>
+							</div>
+
+						</form> 
+						<p class="text-gray-soft text-center small mb-2">By clicking "Sign up" you agree to our <a href="https://themes.getbootstrap.com/terms">Terms of Service</a>.</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	{% endif %}
+
+{% endblock %}

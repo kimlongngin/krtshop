@@ -1,0 +1,11 @@
+.stock_title 
+{
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+	color: #565656; 
+	font-size: 20pt; 
+	text-align: left; 
+	position: table;
+	padding-top: 7px;
+	padding-bottom: 20px;
+}

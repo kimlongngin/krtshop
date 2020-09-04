@@ -1,0 +1,131 @@
+html body {
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc((100vw - 100%) / -2);*/
+    /*margin-top: 40px;*/
+    /*padding: 20px 0;*/
+    /*background-color: #f2f2f2;*/
+    /*background-color: white;*/
+}
+
+.icontain
+{
+	min-height: 650px;
+	/*background-color: white;*/
+	background-color: #EFEFEF;
+}
+
+.default_item_left
+{
+    width: 45%;
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+.default_item_left_icon
+{
+    text-align: center;
+    margin-top: auto;
+    padding-top: 50px;
+    font-size: 50pt;
+    color: white;
+}
+.default_item_right
+{
+    width: 45%;
+    height: 100%;
+    float: right;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 20px;
+    color: white;
+    font-weight: 500;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+
+
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+    border-bottom: 1px solid #4dd0e1;
+    box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+    color: #4dd0e1;
+}
+.active-purple .fa, .active-purple-2 .fa {
+    color: #ce93d8;
+}
+.active-pink .fa, .active-pink-2 .fa {
+    color: #f48fb1;
+}
+
+
+.bs-docs-footer {
+    text-align: left !important;
+}
+
+
+.bs-docs-footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #333;
+}
+
+
+
+.bs-docs-footer-links {
+    padding-left: 0 !important;
+    margin-bottom: 20px;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.bs-docs-footer-links li {
+    display: inline-block;
+
+}
+
+.bs-docs-footer a {
+    color: #fff;
+    text-decoration: none;
+    padding-left: 0 !important;
+}
+

@@ -1,0 +1,57 @@
+.category_box
+{
+	min-width: 250px;
+	min-height: 280px;
+	width: 100%;
+	height: 100%;
+	border:1px solid #f1f1f1;
+	margin-left:auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.category_box img
+{
+	transition: all 0.3s;
+    display: block;
+    transform: scale(1);
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #d9edf7;
+}
+
+.category_box:hover img {
+    transform: scale(1.1);
+}
+
+
+.category_box .no_icon
+{
+	transition: all 0.3s;
+    display: block;
+    transform: scale(1);
+    min-height: 250px;
+    width: 250px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.category_detail
+{
+	min-height: 100px;
+	height: auto;
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+}
+.category_detail .category_name
+{
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 14pt;
+}

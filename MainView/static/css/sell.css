@@ -1,0 +1,164 @@
+.main_sell
+{
+	min-height: 100%;
+	height: auto;
+	border: 1px solid red;
+}
+
+.sell_left
+{
+	min-height: 680px; 
+	height: auto; 
+	border-right: 1px solid #f1f1f1;
+	overflow-y: scroll; 
+	
+}
+
+.sell_left_action
+{	
+	background-color: #DEEFF7;
+	padding:5px 5px;
+	margin-top: 10px;
+	/*margin:5px 5px; */
+}
+
+.pay_button
+{
+	float: right;
+    text-align: center;
+    border-radius: 0px 0px !important;
+    height: 43px;
+    width: 100px;
+}
+.action_button
+{
+	width: 88px;
+}
+
+
+.sell_product
+{
+	min-height: 680px; 
+	height: auto; 
+	border-left: 1px solid #f1f1f1;
+	overflow-y: scroll; 
+}
+
+.sell_left td
+{
+	font-size: 12pt;
+}
+
+
+.input_number
+{
+	width: 80px; 
+	height:38px; 
+	text-align: center;
+}
+
+.sell_product ul li
+{
+	text-decoration: none;
+	display: inline;
+	font-size: 12pt;
+}
+.sell_product a
+{
+	text-align: center; !important;
+	/*color:#4E5152;*/
+	/*border-bottom: 2px solid #d9534f;*/
+	margin-left: 20px;
+
+}
+
+.sell_product a:hover
+{
+	text-decoration: none;
+}
+
+
+.table_style
+{
+	border-bottom: 1px solid #f1f1f1; 
+	height: 60px;
+}
+
+.sell_left table tr
+{
+	border-bottom: 1px solid #f1f1f1; 
+	height: 60px;
+}
+
+.show_hide
+{
+	display: none;
+}
+
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #f48fb1;
+box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+border-bottom: 1px solid #f48fb1;
+box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #ce93d8;
+box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+border-bottom: 1px solid #ce93d8;
+box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #4dd0e1;
+box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+border-bottom: 1px solid #4dd0e1;
+box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.input_search
+{
+	border-left:none !important; 
+	border-right:none !important; 
+	border-top:0 !important; 
+	border-bottom-right-radius: 0 !important; 
+	border-bottom-left-radius: 0 !important;
+
+}
+
+
+#select_result
+{
+	display: none;
+}
+
+
+select#results{
+	list-style: none;
+    /*width: 131px;*/
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+select#results option a {
+	color: #000;
+    background: #ccc;
+    display: block;
+    text-decoration: none;
+}
+select#results option a:hover {
+	background: #aaa;
+}
+
+
+
+
+
+
+
+

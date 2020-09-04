@@ -1,0 +1,75 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Category {% endblock %}
+
+{% block body %}
+
+	<div>
+		{% if all_product_category_ist %}
+			<div class="home_title">
+				<p><span class="glyphicon glyphicon-list" style="color: #d9534f !important;"></span> <span style="color: #d9534f !important;">Category</span> </p>
+			</div>
+			<div class="row">
+				{% for category in all_product_category_ist %}
+					<div class=" col-xs-12 col-sm-6 col-md-3">
+						<div class="category_box thumbnail" style="border: 1px solid #d9534f;">
+							{% if category.icon %}
+								<img src = "../../../{{ category.icon.url }}" class="img-responsive img-circle">
+							{% else %}
+								<img src = "../../static/image/noimage.png" class="img-responsive img-circle">
+							{% endif %}
+							<div class="category_detail">
+								<p class="category_name" style="color: #d9534f !important;">{{ category.name }}</p>
+								{% if category.product_set.all.count > 0 %}
+									{% if category.product_set.all.count > 1 %}
+										<p> <span class="badge">{{ category.product_set.all.count }}</span> products </p>
+										<p> <a href="{% url 'product:category_product' category.id category.name %}" class=""> <span class="glyphicon glyphicon-link"> Detail </span></a> </p>
+									{% else %}
+										<p> <span class="badge">{{ category.product_set.all.count }}</span> product </p>
+										<p> <a href="{% url 'product:category_product' category.id category.name %}" class=""> <span class="glyphicon glyphicon-link"> Detail </span> </a> </p>
+									{% endif %}
+								{% else %}
+									<p> <span class="badge">0</span> product </p>
+									<!-- <p> <a href="#"> </a> </p> -->
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+		{% else %}
+			<div class="home_title">
+				<p><span class="glyphicon glyphicon-user" ></span> Category </p>
+			</div>
+			<div>
+				<p> No cateogry </p>
+			</div>
+		{% endif %}
+
+
+	</div>
+	<div class="pagination_index">
+		{% if is_paginated %}
+		<hr>
+			<ul class="pagination" style="margin:0px 0px !important">
+			{% if page_obj.has_previous %}
+			    <li>
+			        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+			    </li>
+			{% if page_obj.has_next %}
+			    <li>
+			        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		
+		{% endif %}
+	</div>
+
+
+{% endblock %}

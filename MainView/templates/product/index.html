@@ -1,0 +1,91 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Product {% endblock %}
+
+{% block body %}
+
+	<div class="index_background">
+		{% if all_product %}
+
+			<div class="head_index">
+				
+
+				<div class="home_title">
+					<p> <span class="glyphicon glyphicon-list-alt">  </span> Product list </p>
+				</div>
+
+				<div class="search_bg_box" style="display: table;">
+					<form class="form-inline" action="{% url 'product:product_search' %}" method="get" style="margin-top: 2px; ">
+						{% csrf_token %}
+						<div class="form-group">
+
+					      <input style="margin-left: 0px; padding-left: 10px; min-width: 320px;" type="text" class="form-control" name= "q" value="" placeholder="Enter name, phone number, email" required="">		
+					  	</div>
+					  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Seach</button>
+					</form>
+		        </div>
+				
+				
+				
+				<div class="row ">
+					{% for product in all_product %}
+						<a href="{% url 'product:product_detail' product.id %}">
+						  	<div class="col-xs-12 col-sm-6 col-md-4 product_box">
+								<div class="product_list thumbnail">
+									{% if product.default_image %}
+											<div style="margin-bottom: 20px;" class="image_wrapper">
+												<img src = "../../../{{ product.default_image.url }}" class="default_image img-responsive">
+											</div>	
+									{% endif %}
+
+									<div>
+										<div><p class="product_name">{{ product.name }}</p></div>
+										<div><p class="product_code"> Code: {{ product.product_number }}</p></div>
+
+										<div>
+											{% if product.special_price > 0 %}
+								        		<p class="product_price">
+								        			<span style="text-decoration: line-through">${{ product.price |floatformat:2 }}</span>
+								        			<span style="color:red;">${{ product.special_price |floatformat:2 }} </span>
+								        		</p>
+								        	{% else %}
+								        		<p class="product_price">${{ product.price |floatformat:2 }}</p>
+								        	{% endif %}
+
+										</div>
+									</div>
+							  	</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+				
+		{% else %}
+			<div style=" text-align: center; margin-top: 10px;"><h3> Don't have products in stock </h3></div>
+		{% endif %}
+	</div>
+
+
+	<div class="pagination_index">
+				
+				{% if is_paginated %}
+				<hr>
+					<ul class="pagination" style="margin:0px 0px !important">
+					{% if page_obj.has_previous %}
+					    <li>
+					        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+					    </li>
+					{% endif %}
+					    <li class="">
+					        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+					    </li>
+					{% if page_obj.has_next %}
+					    <li>
+					        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+					    </li>
+					{% endif %}
+					</ul>
+				
+				{% endif %}
+			</div>
+{% endblock %}

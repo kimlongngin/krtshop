@@ -1,0 +1,283 @@
+.product_box
+{
+	min-height: 550px;
+	height: auto;
+	/*margin-top: 10px;*/
+	/*padding: 10px;*/
+	margin-top: 15px;
+	
+}
+.product_list
+{
+	
+	max-width: 100%;
+	margin:auto;
+	width: auto;
+	/*border: 1px solid #f1f1f1;*/
+	/*border: 0px solid #6e90bd;*/
+	height: 100%;
+	padding-top: 5px;
+	margin: auto;
+	display: inline-block;
+	vertical-align: baseline;
+	outline: 0;
+
+	/*box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);*/
+}
+
+.image_wrapper {
+	position: relative;
+    margin: auto;
+    overflow: hidden;
+    /*width: 540px;*/
+}
+
+.image_wrapper img
+{
+	/*max-width: 100%;*/
+    transition: all 0.3s;
+    display: block;
+   /* width: 100%;
+    height: auto;*/
+    transform: scale(1);
+}
+.image_wrapper:hover img {
+    transform: scale(1.1);
+}
+
+.default_image
+{
+	/*max-width: 350px;*/
+	width: 100%;
+	min-height: 440px;
+	height: auto;
+	margin: auto;
+}
+
+
+
+.product_sub_list
+{
+	margin-bottom: 20px;
+	min-height: 350px;
+	height: auto;
+	width: 98%;
+}
+.product_name
+{
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+	color: #565656; 
+	font-size: 16pt; 
+	text-align: center; 
+	position: table;
+	padding-top: 7px;
+	/*margin-top: 10px;*/
+}
+.product_title_detail
+{
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+	color: white; 
+	font-size: 25pt; 
+	text-align: left; 
+	position: table;
+	padding-top: 15px;	
+	
+}
+
+.product_title_more_detail
+{
+	width: 100%;
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+	color: #3958B6; 
+	/*background-color: #f2f2f2;*/
+	font-size: 20pt; 
+	text-align: center; 	
+	margin-top: 15px;
+
+	
+}
+
+.product_reivew
+{
+	color: #B2B639;	
+	/*padding-left: 10px;*/
+}
+.order_button
+{
+	width: 180px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.product_code 
+{
+	color: #397FB6;
+	font-size: 15px;
+	text-align: center;
+	position: table;
+}
+.product_price
+{
+	font-size: 15px; 
+	color: red; 
+	text-align: center; 
+	font-weight: bold; 
+	position: table;
+	padding-top: 0px;
+	/*margin-top: 10px;*/
+}
+.product_detail_price
+{
+	font-size: 13px; 
+	color: red;
+	font-weight: bold; 
+	position: table;
+	padding-top: 0px;
+	margin-top: 10px;
+}
+
+
+.detail_image_size
+{
+	max-width: 450px;
+	max-height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	/*margin-top: 100px;*/
+}
+.detail_sub_image_size
+{
+	max-width: 400px;
+	max-height: 450px;
+}
+
+
+.index_background
+{
+	width: 100%;
+	/*min-height: 0px;*/
+	/*background-color: #EFEFEF;*/
+	/*margin-bottom: 20px;
+	padding-bottom: 20px;*/
+	margin-bottom: 20px;
+}
+
+.head_index
+{
+	width: 100%;
+	height: 70px;
+	/*background-color: #FFFFFF;*/
+	display: table;
+	padding-bottom: 10px;
+	/*color: #FFFFFF;*/
+}
+.head_pad_index
+{
+	margin-top: 5px;
+	background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: -14px;
+    margin-bottom: 20px;
+}
+
+.head_index_pad
+{
+	margin-top: 5px;
+	background-color: white;
+    /*padding-right: 20px;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float:right;
+    /*border: 0px solid #f2f2f2;*/
+}
+.pagination_index
+{
+	margin-top: 0px;
+	margin-left: 0px;
+}
+.search_title
+{
+	color: black;
+	font-size: 20pt;
+	font-weight: bold;
+	/*text-align: center;*/
+}
+.sub_product_title
+{
+	color: white;
+	font-weight: bold;
+	padding: 15px;
+	
+}
+.sub_title
+{
+	/*color: white;*/
+	font-family: "Futura", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 13pt;
+	padding-top: 10px;
+    /*padding-bottom: 10px;*/
+    /*padding-left: 10px;*/
+	
+}
+
+.movetotop
+{
+	width: 55px;
+	height: 60px;
+	bottom: 0;
+	position: fixed;
+	background-color: white;
+	/*opacity: 0.1;*/
+	right: 0;
+	border-radius: 5px 5px;
+	margin-right: 10.8%;
+	color: black;
+
+}
+
+.move_tex 
+{
+	color: black;
+	font-weight: bold;
+}
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+.mytop
+{
+	background-color: #6f5499;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #cdbfe3;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+}
+
+
+
+
+

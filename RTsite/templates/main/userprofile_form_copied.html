@@ -1,0 +1,273 @@
+{% extends 'city/base.html' %}
+{% block title %} Add City {% endblock %}
+{% block city_active %} Active {% endblock %}
+
+{% block body %}
+	
+	<style type="text/css">
+		#id_present_address, #id_country, #id_nationality, #id_is_recruit, #id_phone_number, #id_sex, #id_date_of_birth, #id_city, #id_email{
+		 	display: block;
+			width: 100%;
+			height: 34px;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		 }
+		 #id_description{
+		 	display: block;
+			width: 100%;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		 }
+		
+
+	</style>
+	
+	{% if user.is_authenticated %}
+
+		<div class="container">
+		<!-- <div class="container-fluid"> -->
+			<div class="align-items-center">
+				<div class="row">
+					<div class="col-md-12 order-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">							
+								<h3 class="mb-3">Update user profile </h3> 
+								<hr class="mb-4">
+
+									<form class="needs-validation" action="" method="post" enctype="multipart/form-data">
+							            {% csrf_token %}
+										<div class="row">
+								            <div class="col-md-12 mb-3">
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.sex.errors }} 
+								                	</span>
+								                </div>
+
+								                <label for="id_sex">Gender: </label>
+								                {{ form.sex }}	
+								                <div class="invalid-feedback">
+								                  Valid sex is required.
+								                </div>
+								             </div>
+
+
+											<div class="col-md-12 mb-3">
+												
+												<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.date_of_birth.errors }} 
+								                	</span>
+								                </div>
+								                <label for="lastName">Date of Birth:</label>
+								                {{ form.date_of_birth }}
+								                <div class="invalid-feedback">
+								                  Valid date of birth is required.
+								                </div>
+								            </div>
+
+								            <div class="col-md-12 mb-3">
+												
+												<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.country.errors }} 
+								                	</span>
+								                </div>
+								                <label for="lastName">Country:</label>
+								                {{ form.country }}
+								                <div class="invalid-feedback">
+								                  Valid country is required.
+								                </div>
+								            </div>
+
+								            <div class="col-md-12 mb-3">
+												
+												<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.city.errors }} 
+								                	</span>
+								                </div>
+								                <label for="lastName">City:</label>
+								                {{ form.city }}
+								                <div class="invalid-feedback">
+								                  Valid city is required.
+								                </div>
+								            </div>
+
+								            <div class="col-md-12 mb-3">
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.nationality.errors }} 
+								                	</span>
+								                </div>
+								                <label for="lastName">Nationality: </label>
+								                {{ form.nationality }}
+								                <div class="invalid-feedback">
+								                  Valid nationality is required.
+								                </div>
+								            </div>
+								            <div class="col-md-12 mb-3">
+								            	
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.email.errors }}
+								                	</span>
+								                </div>
+								                <label for="lastName">Email: </label>
+								                {{ form.email }}
+								                <div class="invalid-feedback">
+								                  Valid last name is required.
+								                </div>
+								            </div>
+											<div class="col-md-12 mb-3">
+								            	
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.phone_number.errors }}
+								                	</span>
+								                </div>
+								                <label for="lastName">Phone Number (optional): </label>
+								                {{ form.phone_number }}
+								               <div class="invalid-feedback">
+								                  Valid your phone number required.
+								                </div>
+								            </div>
+								            <div class="col-md-12 mb-3">
+								            	
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.is_recruit.errors }}
+								                	</span>
+								                </div>
+								                <label for="lastName">What will you do ? : </label>
+								                {{ form.is_recruit }}
+								                <div class="invalid-feedback">
+								                  Valid your future plan required.
+								                </div>
+								            </div>	
+
+
+								            <div class="col-md-12 mb-3">
+												
+												<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.present_address.errors }} 
+								                	</span>
+								                </div>
+								                <label for="lastName">Present Address:</label>
+								                {{ form.present_address }}
+								                <!-- <div class="invalid-feedback">
+								                  Valid present address is required.
+								                </div> -->
+								            </div>
+
+
+								            <div class="col-md-12 mb-3">
+								            	
+								            	<div class="input-group-prepend">
+								                	<span class="text-danger small input-group-text"> {{ form.description.errors }}
+								                	</span>
+								                </div>
+								                <label for="lastName">Description: </label>
+								                {{ form.description }}
+								                <!--<div class="invalid-feedback">
+								                  Valid description is required.
+								                </div> -->
+								            </div>
+
+
+							           	</div>
+
+
+
+							            <hr class="mb-4">
+							            <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+							           
+
+							        </form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			document.getElementById("id_sex").required = true;
+			document.getElementById("id_email").required = true;
+			document.getElementById("id_date_of_birth").required = true;
+			document.getElementById("id_is_recruit").required = true;
+			document.getElementById("id_city").required = true;
+			document.getElementById("id_phone_number").required = true;
+			document.getElementById("id_country").required = true;
+			document.getElementById("id_nationality").required = true;
+			document.getElementById("id_phone_number").required = true;
+			document.getElementById("id_description").rows="3"
+
+
+			document.getElementById("id_present_address").placeholder="country/city/street No/home No"
+			document.getElementById("id_email").placeholder = "example@mail.com";
+			document.getElementById("id_phone_number").placeholder = "(855)1012345678";
+			document.getElementById("id_country").placeholder = "Cambodia";
+			document.getElementById("id_city").placeholder = "Phnom Penh";
+			document.getElementById("id_nationality").placeholder = "Khmer";
+
+
+
+		</script>
+
+		<!-- <div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+						
+							<form class="form-horizontal needs-validation" action="" method="post" enctype="multipart/form-data">
+								<input type ="text"  value= "{{ user.id }}" id="user_id" name = "user" hidden="true">
+								
+								{% csrf_token %}
+								{% include 'city/form_template.html' %}
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-success"> Save >></button>
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+
+	{% else %}
+		<a href="{% url 'linkedhr:login'%} " >>>Login </a>
+	{% endif %}
+
+	<style type="text/css">
+		label[for="id_user_id"] { display:none; }
+	</style>
+	<script type="text/javascript">
+		var user_id = document.getElementById("user_id").value;
+		document.getElementById('id_user_id').value=user_id;
+		document.getElementById('id_user_id').style.display = "none";
+	</script>
+
+
+{% endblock %}

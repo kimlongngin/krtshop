@@ -1,0 +1,123 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Invoices detail {% endblock %}
+
+{% block body %}
+	
+
+	<div>
+		
+		<div class="home_title">
+			<p> <span class="glyphicon glyphicon-th-large">  </span> Detail invoice "{{ invoice_no }}"  </p>
+		</div>
+
+		<div style="border:0px solid #f1f1f1; padding:0px 0px;">
+			
+			<!-- <div class="row">
+				<div class="col-md-5">
+					<div style="width: 40%; margin-left: auto; margin-right: auto; text-align: center;">
+						<h4> RTMK  </h4>
+						<p>Free product marketing</p>
+					</div>
+				</div>
+				<div class="col-md-6" style="float:right; text-align: left;">
+					<div style="width: 40%; margin-left: auto; margin-right: auto;">
+						{% if invoice_no %}
+							<h4> Invoice: {{ invoice_no }} </h4>
+							<h5> Cient name: {{ full_name }} </h5>
+							<h5> Phone number: {{ phone_number }} </h5>
+							<h5> Address: {{ address }} </h5>
+						{% endif %}
+					</div>
+				</div>
+			</div> -->
+			
+			{% if all_sales %}
+				<table class="table">
+					<thead>
+						<tr>
+							<th> No </th>
+							<th> Code </th>
+							<th> Item </th>
+							<th> Quantity </th>
+							<th> Unit price </th>
+							<th> Free(Unit) </th>
+							<th> SubTotal </th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						{% for i in all_sales %}
+							<tr>
+								<td>{{forloop.counter}}</td>
+								<td> <p> {{ i.product_number }} </p> </td>
+								<td> 
+									<!-- <img src = "../../../../../../../../../{{ i.product_image.url }}" class="img-responsive" style="width: 50px; height: 50px;">  -->
+									<p> {{ i.product_name }} </p> 
+								</td>
+								<td> <p> {{ i.unit }} </p> </td>
+								<td><p> ${{ i.unit_price |floatformat:2 }} </p></td>
+								<td> {{ i.discount }} </td>
+								<td> ${{ i.sub_total |floatformat:2 }} </td>
+							</tr>
+								
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<div style=" border-top: 2px solid #f1f1f1; text-align: right; margin-right:20px;">
+
+					{% if all_pays %}
+					
+						{% for j in all_pays %}
+							<p style="color:#337ab7; font-weight: 700;padding-top: 10px;">Total: ${{ j.total_amount |floatformat:2 }}</p>
+							<p style="color:#337ab7; font-weight: 700;padding-top: 00px;">Discount: {{ j.discount }}%</p>
+							<p style="color:#337ab7; font-weight: 700;padding-top: 0px;">Pay amount: ${{ j.pay_amount |floatformat:2 }}</p>
+							<p style="color:#337ab7; font-weight: 700;padding-top: 0px;">Receive amount: ${{ j.receive_amount |floatformat:2 }}</p>
+							<p style="color:#337ab7; font-weight: 700;padding-top: 0px;">Remaining: ${{ j.remaining |floatformat:2 }} </p>
+						{% endfor %}
+
+					{% else %}
+						<p style="color:#337ab7; font-weight: 700;padding-top: 10px;">Total: ${{ grand_total |floatformat:2 }}</p>
+						<p style="color:#337ab7; font-weight: 700;padding-top: 0px;"> Remaining: ${{ remain |floatformat:2 }} </p>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	
+
+	<div style="margin-bottom: 20px; margin-top: 20px">
+		<a href = "{% url 'sell:print_report' invoice_no %}" target="_blank" type="button" class="btn btn-primary">
+			<span class="glyphicon glyphicon-print"></span> Print</a>
+
+	</div>
+
+
+
+	<div class="pagination_index">
+		{% if all_data.count > paginator_num  %}
+			<ul class="pagination" style="margin:0px 0px !important">
+			{% if all_product.has_previous %}
+			    <li>
+			    	<span><a href="?page=1">&laquo; first</a></span>
+			    </li>
+			    <li>
+			        <span><a href="?page={{ all_product.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ all_product.number }} of {{ all_product.paginator.num_pages }}.</span>
+			    </li>
+			{% if all_product.has_next %}
+				<li><span><a href="?page={{ all_product.next_page_number }}">Next</a></span></li>
+			    <li>
+			        <span><a href="?page={{ all_product.paginator.num_pages }}">last &raquo;</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		{% endif %}
+		
+	</div>
+
+{% endblock %}

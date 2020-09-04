@@ -1,0 +1,212 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Payment {% endblock %}
+
+{% block body %}
+	
+	<div class="container">
+	<!-- <div class="container-fluid"> -->
+		<div class="align-items-center">
+			<div class="row">
+				<div id="loginbox signup_div_wrapper" style="margin-top:10px;margin-bottom:10px;border: 0px solid red;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">        <div style="text-align: center;">
+					<img class="img-fluid mx-auto d-block mb-3" src="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/assets/images/elements/bootstrap-logo.svg" alt="">
+					</div>	
+					    <h1 class="mb-1 text-center">Payment</h1>
+					    <h4 class="mb-1 text-center"> Invoice: {{ invoice_no }} </h4>
+					    
+					    <p class="fs-14 text-gray text-center mb-5">Please check information before make payment.</p>
+					
+					<form class="form-horizontal needs-validation" action="{% url 'customer:make_save_payment' %}" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						
+						{% for i in  all_customer %}
+							
+							<input type="hidden" name="invoice_no" id="invoice_no" value="{{ invoice_no }}">
+
+							<div class="form-group has-success">
+							  <label class="control-label" for="inputSuccess1">Total amount ($)</label>
+							  <input type="hidden" class="form-control" id="itotal_amount" name="itotal_amount" aria-describedby="helpBlock2" value= "{{ i.total_amount | floatformat:2 }}" >
+							  <input type="text" class="form-control" id="total_amount" name="total_amount" aria-describedby="helpBlock2" value= "{{ i.total_amount | floatformat:2 }}" disabled>
+							</div>
+
+							<div class="form-group has-warning">
+							  	<label class="control-label" for="inputWarning1">Discount(%), only 3 digits number input.</label>
+							  	{% if i.discount > 0 %}
+							 		<input type="number" class="form-control" id="discount" name="discount" value ="{{ i.discount }}" onkeyup="subDiscountPayment()" min="0" max="100" step="0.000001">
+							 	{% else %}
+							 		<input type="number" class="form-control" id="discount" name="discount" value = 0 onkeyup="subDiscountPayment()" min="0" max="100" step="0.000001">
+							 	{% endif %}
+							</div>
+
+							<div class="form-group has-success">
+							  <label class="control-label" for="pay_amount">Pay amount ($)</label>
+							   <input type="hidden" class="form-control" id="ipay_amount" name="ipay_amount" value ="{{ i.pay_amount | floatformat:2 }}" >
+							  <input type="text" class="form-control" id="pay_amount" name="pay_amount" value ="{{ i.pay_amount | floatformat:2 }}" disabled>
+							</div>
+
+							<div class="form-group has-warning has-feedback">
+							  <label class="control-label" for="receive_amount">Receive amount ($)</label>
+							  <input type="number" class="form-control" id="receive_amount" name="receive_amount" value = "{{ i.receive_amount }}" onkeyup="SubReceivePayment()" step="0.001">
+							</div>
+							<div class="form-group has-success">
+							  <label class="control-label" for="exchange">Exchange ($)</label>
+							  <input type="text" class="form-control" id="exchange" name="exchange" value = "" disabled>
+							</div>
+							<div class="form-group has-error">
+							  <label class="control-label" for="remain">Remaining ($)</label>
+							  <input type="hidden" class="form-control" id="iremain" name="iremain" value="{{ i.remain }}" >
+							  <input type="text" class="form-control" id="remain" name="remain" value="{{ i.remain |floatformat:2  }}" disabled>
+							</div>
+
+						{% endfor %}
+				
+						<div class="form-group">
+							<div>
+								<button type="submit" class="btn btn-register btn-brand btn-block btn-lg mb-4 mt-3"> <span class="glyphicon glyphicon-usd"></span>Pay</button>
+							</div>
+						</div>
+
+					</form> 
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+			
+
+
+	<div class="pagination_index">
+		{% if is_paginated %}
+				<ul class="pagination" style="margin:0px 0px !important">
+			{% if page_obj.has_previous %}
+			    <li>
+			        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+			    </li>
+			{% if page_obj.has_next %}
+			    <li>
+			        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		
+		{% endif %}
+	</div>
+
+
+	<script type="text/javascript">
+
+		
+
+		function SubReceivePayment()
+		{
+			var amount_payment = document.getElementById("pay_amount").value;
+			var receive_amount_payment = document.getElementById("receive_amount").value;
+
+			if (Number(receive_amount_payment) > Number(amount_payment))
+			{
+				document.getElementById("exchange").value = Number(receive_amount_payment) - Number(amount_payment);
+				document.getElementById("iremain").value = 0;
+				document.getElementById("remain").value = 0;
+			}else{
+				if (Number(amount_payment) >  Number(receive_amount_payment)) 
+				{
+					document.getElementById("remain").value = Number(amount_payment) -  Number(receive_amount_payment);
+					document.getElementById("iremain").value = Number(amount_payment) -  Number(receive_amount_payment);
+					document.getElementById("exchange").value = 0;
+				}else{
+					document.getElementById("iremain").value = 0;
+					document.getElementById("remain").value = 0;
+					document.getElementById("exchange").value = 0;
+				}
+			}
+		}
+
+
+		function subDiscountPayment()
+		{
+			var discount = document.getElementById("discount").value;
+			var total_payment = document.getElementById("total_amount").value; 
+			var total = 0;
+
+
+
+			document.getElementById("pay_amount").value = Number(total_payment);
+			document.getElementById("ipay_amount").value = Number(total_payment);
+
+			if (Number(discount > 0)){
+				var discount = (Number(total_payment) * Number(discount)) / 100;
+				total = Number(total_payment) - discount;
+				document.getElementById("pay_amount").value = total;
+				document.getElementById("ipay_amount").value = total;
+				document.getElementById("remain").value = total;
+				document.getElementById("iremain").value = total;
+
+
+				var receive_amount_payment = document.getElementById("receive_amount").value;
+				
+				if (Number(receive_amount_payment) > 0)
+				{
+					var amount_payment = document.getElementById("pay_amount").value;
+					// var receive_amount_payment = document.getElementById("sub_receive_amount_payment").value;
+
+					if (Number(receive_amount_payment) > Number(total))
+					{
+						document.getElementById("exchange").value = Number(receive_amount_payment) - Number(total);
+						document.getElementById("remain").value = 0;
+						document.getElementById("iremain").value = 0;
+					}else{
+						if (Number(total) >  Number(receive_amount_payment)) 
+						{
+							document.getElementById("iremain").value = Number(total) -  Number(receive_amount_payment);
+							document.getElementById("remain").value = Number(total) -  Number(receive_amount_payment);
+							document.getElementById("exchange").value = 0;
+						}else{
+							document.getElementById("iremain").value = 0;
+							document.getElementById("remain").value = 0;
+							document.getElementById("exchange").value = 0;
+						}
+					}
+				}
+
+			}else{
+				document.getElementById("ipay_amount").value = total_payment;
+				document.getElementById("pay_amount").value = total_payment;
+				document.getElementById("iremain").value = total_payment;
+				document.getElementById("remain").value = total_payment;
+
+
+				var receive_amount_payment = document.getElementById("receive_amount").value;
+				if (Number(receive_amount_payment) > 0)
+				{
+					var amount_payment = document.getElementById("pay_amount").value;
+					var receive_amount_payment = document.getElementById("receive_amount").value;
+
+					if (Number(receive_amount_payment) > Number(total))
+					{
+						document.getElementById("exchange").value = Number(receive_amount_payment) - Number(total);
+						document.getElementById("remain").value = 0;
+						document.getElementById("iremain").value = 0;
+					}else{
+						if (Number(total) >  Number(receive_amount_payment)) 
+						{
+							document.getElementById("iremain").value = Number(total) -  Number(receive_amount_payment);
+							document.getElementById("remain").value = Number(total) -  Number(receive_amount_payment);
+							document.getElementById("exchange").value = 0;
+						}else{
+							document.getElementById("iremain").value = 0;
+							document.getElementById("remain").value = 0;
+							document.getElementById("exchange").value = 0;
+						}
+					}
+				}
+			}
+		}
+
+	</script>
+
+{% endblock %}

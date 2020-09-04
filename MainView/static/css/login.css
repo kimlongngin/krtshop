@@ -1,0 +1,28 @@
+
+.login_main
+{
+	min-width: 30%;
+	margin:auto;
+}
+
+.woocommerce img, .woocommerce-page img {
+    height: auto;
+    max-width: 100%;
+}
+.woocommerce-account .woocommerce, .woocommerce-checkout .woocommerce {
+    width: 100%;
+    padding: 0 15px;
+}
+.btn-register {
+    background: #7952B3;
+    color: #ffffff;
+}
+
+.form-control, .input-text, #user_login, #user_pass {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 40px;
+    color: #272727;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, Arial, sans-serif;
+    font-size: 14px;
+}

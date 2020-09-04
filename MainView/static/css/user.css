@@ -1,0 +1,126 @@
+.user_profile
+{
+	/*margin:5px 5px;*/
+	border-radius: 5px 5px;
+	border:1px solid #f1f1f1;
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+	margin-bottom: 15px;
+
+}
+
+.user_name
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 14pt;
+    /*background-color: #676C6F;*/
+    color:#333;
+    text-align: left;
+    /*height: 230px;*/
+    bottom: 0;
+   /* padding-bottom: 50px;*/
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.user_avatar
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid #f1f1f1;
+	color:#333;
+	display: table;
+	width: 100%;
+}
+.user_avatar_name 
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin-top: 20px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 20pt;
+}
+
+.user_sub_detail
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 12pt;
+	text-align: center;
+	padding-top: 0pt;
+	margin:auto;
+}
+
+.user_detail
+{
+	min-height: 92px;
+	padding: 5px 5px;
+	text-align: center;
+	height: auto;
+
+}
+
+.user_avatar_wrapper
+{
+	min-height: 340px;
+	height: auto;
+	position: relative;
+	width: 100%;
+
+}
+
+.user_avatar_image
+{
+	/*width: 300px;*/
+	width:100%;
+	margin: auto;
+	/*height: auto;*/
+	position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+.user_avatar_image img
+{
+    transition: all 0.3s;
+    display: block;
+    transform: scale(1);
+    height: 340px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.user_avatar_image:hover img {
+    transform: scale(1.1);
+}
+
+
+
+.user_product_list
+{
+	height: 150px; 
+	width: 150px; 
+	/*background-color: #f1f1f1; */
+	margin:auto;
+	padding:10px;
+}
+
+.user_product_list_detail
+{
+	text-align: left;
+	/*margin:10px;*/
+}
+
+
+
+
+
+
+
+
+
+

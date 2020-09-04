@@ -1,0 +1,19 @@
+.sidenav{background-color:#3F4651;height:100%;left:0;overflow-x:hidden;padding-top:60px;position:fixed;top:0;transition:.5s;width:0;z-index:1;}
+.sidenavR{background-color:#111;height:100%;overflow-x:hidden;padding-top:60px;position:fixed;right:0;top:0;transition:.5s;width:0;z-index:1;}
+/*.sidenav a,.sidenavR a{ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; color:#ef7676;display:block;font-size:20px;padding:8px 8px 8px 32px;text-decoration:none;transition:.3s;}
+*/
+/*.sidenav a,.sidenavR a{ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; color:#ffffff;display:block;font-size:20px;padding:8px 8px 8px 32px;text-decoration:none;transition:.3s;}*/
+
+.sidenav a,.sidenavR a{ 
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+	color:#ffffff;display:block;font-size:20px;
+	padding-left:32px; 
+	padding-top:19px; 
+	text-decoration:none;transition:.3s;
+}
+.sidenav a:hover,.offcanvas a:focus,.sidenavR a:hover,.offcanvas a:focus{ color:#f1f1f1;}
+.sidenav .closebtn,.sidenavR .closebtn{font-size:36px;margin-left:50px;position:absolute;right:25px;top:0;}
+@media screen and max-height 450px {
+.sidenav,.sidenavR{padding-top:15px;}
+.sidenav a,.sidenavR a{font-size:18px;}
+}

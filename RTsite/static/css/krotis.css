@@ -1,0 +1,110 @@
+.product_list
+{
+	width: 300px; 
+	height: 350px; 
+	border: 1px solid gray; 
+	border-radius: 5px 5px;
+}
+
+.skill_item
+{
+	background-color: #ce4b45;
+	height: 25px;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #eeeeee;
+	margin-right: 5px;
+	padding-top: 4px;
+	text-align: center;
+	margin-bottom: 11px;
+	font-size: 13px;
+	font-weight: lighter;
+	border-bottom-right-radius: 17px;
+	border-top-right-radius: 17px
+}
+.breadcrumb
+{
+	margin-bottom: 0px !important;
+}
+.list_branch_first
+{
+	background-color: #eeeeee
+}
+.list_branch_second
+{
+	background-color: antiquewhite;
+	padding-top:5px;
+	padding-bottom: 5px;
+}
+
+.bs-callout {
+	/*padding: 20px; */
+	padding-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 20px 0;
+	border: 1px solid #eee;
+	border-left-width: 1px;
+	border-left-color: rgb(238, 238, 238);
+	border-left-width: 5px;
+	border-radius: 3px;
+}
+
+.bs-callout_ls {
+	/*padding: 20px; */
+	padding-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 20px 0;
+	border: 1px solid #eee;
+	border-left-width: 1px;
+	border-left-color: rgb(238, 238, 238);
+	/*border-left-width: 5px;*/
+	border-radius: 3px;
+}
+
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid black !important;
+    border-radius: 4px;
+}
+.my_header
+{
+	background-color: rgb(40, 38, 41);
+	background-image: none;
+	background-repeat: repeat;
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-size: auto auto;
+}
+.my_header a 
+ {
+
+	
+ }
+
+ .success_text
+ {
+ 	font-weight: bold;
+ 	color:blue;
+ }
+.bs-callout-info {
+	border-left-color: #1b809e !important;
+}
+.bs-callout-danger {
+    border-left-color: #ce4b45 !important;
+}
+
+.coding{
+	border-bottom: 1px dashed #ccc;
+}

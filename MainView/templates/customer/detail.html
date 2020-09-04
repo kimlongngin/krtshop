@@ -1,0 +1,150 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Invoices {% endblock %}
+
+{% block body %}
+
+	<div>
+		
+		<div class="home_title">
+			<p> <span class="glyphicon glyphicon-th-large">  </span> More about {{ name }}  </p>
+
+
+			<div class="search_bg_box" style="display: table;">
+				<form class="form-inline" action="{% url 'customer:search_customer_invoice' %}" method="get" style="margin-top: 2px; ">
+					{% csrf_token %}
+					
+					<input type="hidden" value="{{ name }}" id = "full_name", name="full_name">
+		    		<div class="form-group">
+		    			<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+		                
+		                    <input class="form-control" size="16" type="datetime" value="" readonly style="min-width: 250px;" id="start_date" name = "start_date">
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+						<input type="hidden" id="dtp_input2" value="" /><br/>
+		            </div>
+
+		            <div class="form-group">
+		                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="datetime" value="" readonly style="min-width: 250px;" id="end_date" name = "end_date">
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+						<input type="hidden" id="dtp_input2" value="" /><br/>
+		            </div>
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Seach</button>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Invoice Number</th>
+							<th>Seller</th>
+							<th>Product amount</th>
+							<th>Date</th>
+							<th>Detail</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in all_invoices %}							
+							<tr>
+								<td>{{forloop.counter}}</td>
+								<td> {{ i.invoice_number }}</td>
+								<td> {{ i.user.first_name }} {{ i.user.last_name }} </td>
+
+								{% if i.sale_invoice.all.count > 0 %}
+									<td> {{ i.sale_invoice.all.count }} </td>
+								{% else %}
+									<td> 0 </td>
+								{% endif %}
+								<td> {{ i.created_at }} </td>
+								<td> <a href="{% url 'customer:list_invoice_detail' i.invoice_number %}"> <span class="glyphicon glyphicon-hand-right"> Show </span> </a></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div style="margin-bottom: 20px; margin-top: 20px;">
+		<!-- <a href = "#" type="button" class="btn btn-primary">Preview</a> -->
+		<a href = "{% url 'customer:export_customer_invoice' name %}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Export</a>
+	</div>
+	
+	<div class="pagination_index">
+	
+		
+		{% if all_data.count > paginator_num  %}
+			<ul class="pagination" style="margin:0px 0px !important">
+			{% if all_invoices.has_previous %}
+			    <li>
+			    	<span><a href="?page=1">&laquo; first</a></span>
+			    </li>
+			    <li>
+			        <span><a href="?page={{ all_invoices.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ all_invoices.number }} of {{ all_invoices.paginator.num_pages }}.</span>
+			    </li>
+			{% if all_invoices.has_next %}
+				<li><span><a href="?page={{ all_invoices.next_page_number }}">Next</a></span></li>
+			    <li>
+			        <span><a href="?page={{ all_invoices.paginator.num_pages }}">last &raquo;</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+
+		{% endif %}
+		
+	</div>
+
+
+
+	{% block javascript %}
+
+		<script type="text/javascript">
+
+			$('.form_datetime').datetimepicker({
+		        //language:  'fr',
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+		        showMeridian: 1
+		    });
+			$('.form_date').datetimepicker({
+		        language:  'fr',
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0
+		    });
+			$('.form_time').datetimepicker({
+		        language:  'fr',
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 1,
+				minView: 0,
+				maxView: 1,
+				forceParse: 0
+		    });
+		</script>
+	{% endblock %}
+
+{% endblock %}

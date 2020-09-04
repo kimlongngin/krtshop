@@ -1,0 +1,25 @@
+.search_bg_box
+{
+	width: 100%;
+	height: 50px;
+	background-color: #f1f1f1;
+	/*display: block;*/
+	margin-bottom: 20px;
+	padding-top: 3px;
+	padding-left: 3px;
+}
+
+.bs-callout-danger h4 {
+    color: #ce4844;
+}
+
+.bs-callout-info h4 {
+    color: #1b809e;
+}
+
+.bs-callout-warning h4 {
+    color: #aa6708;
+}
+.bs-callout-warning {
+    border-left-color: #aa6708;
+}

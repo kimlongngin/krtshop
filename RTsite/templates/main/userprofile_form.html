@@ -1,0 +1,103 @@
+{% extends 'city/base.html' %}
+{% block title %} Add City {% endblock %}
+{% block city_active %} Active {% endblock %}
+
+{% block body %}
+	
+	<!--<style type="text/css">
+		#id_present_address, #id_country, #id_nationality, #id_is_recruit, #id_phone_number, #id_sex, #id_date_of_birth, #id_city, #id_email{
+		 	display: block;
+			width: 100%;
+			height: 34px;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		 }
+		 #id_description{
+		 	display: block;
+			width: 100%;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		 }
+		
+
+	</style> -->
+	
+	{% if user.is_authenticated %}
+
+
+		<!-- <div class="container"> -->
+        <!--<div class="container-fluid"> -->
+        <div> 
+		<!-- <div class="container-fluid"> -->
+			<div class="align-items-center">
+				<div class="row">
+					<div class="col-md-12 order-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">	
+								{% if messages %}
+								    {% for message in messages %}
+								      <p class="bg-success success_text">{{ message }}</p>
+								    {% endfor %}
+								{% endif %}							
+								<h4 class="mb-3">Update userprofile </h4> 
+								<hr class="mb-4">
+									<form class="form-horizontal needs-validation" action="" method="post" enctype="multipart/form-data">
+							        
+										{% csrf_token %}
+										{% include 'city/form_template.html' %}
+
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-success"> Update</button>
+											</div>
+										</div>
+
+									</form> 
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	{% else %}
+		<div>
+			<p> Please login ! </p>
+		</div>
+	{% endif %}
+
+	<style type="text/css">
+		label[for="id_user_id"] { display:none; }
+	</style>
+	<script type="text/javascript">
+		var user_id = document.getElementById("user_id").value;
+		document.getElementById('id_user_id').value=user_id;
+		document.getElementById('id_user_id').style.display = "none";
+	</script>
+
+
+{% endblock %}

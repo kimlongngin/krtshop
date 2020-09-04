@@ -1,0 +1,63 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Owe list {% endblock %}
+
+{% block body %}
+	
+
+	<div>
+		{% if all_customer %}
+			<div class="home_title">
+				<p> <span class="glyphicon glyphicon-th-large">  </span> Search list </p>
+			</div>
+    
+	    {% else %}
+	    	<div style="text-align: center; margin-top: 20px;">
+	    		<h3><code> Search not found. </code></h3>
+	    	</div>
+        {% endif %}
+
+
+        <div class="row row-no-gutters">
+			{% for icustomer in all_customer %}
+				
+				<div class="col-xs-12 col-sm-6 col-md-4">
+
+					<div class="bs-callout bs-callout-warning" id="callout-helper-context-color-accessibility" style="padding: 5px; margin: 5px;">
+						<h4> {{ icustomer.invoice.customer }} </h4>
+						<h5> <span style="font-weight: bold;">Invoice Number:</span> {{ icustomer.invoice }} </h5>
+						<p><code>Remained: ${{ icustomer.remain |floatformat:2}}</code></p>
+						<p> <span style="font-weight: bold;">Bought at:</span> <span style="font-style: italic; ">{{ icustomer.created_at }}</span> </p>
+						<a href="{% url 'customer:compansate_remaining' icustomer.invoice %}" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-usd"></span>Pay</a>
+
+					</div>
+				</div>
+				
+			{% endfor %}
+		</div>
+
+	</div>
+
+	
+	<div class="pagination_index">
+		{% if is_paginated %}
+			<hr/>
+				<ul class="pagination" style="margin:0px 0px !important">
+			{% if page_obj.has_previous %}
+			    <li>
+			        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+			    </li>
+			{% if page_obj.has_next %}
+			    <li>
+			        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		{% endif %}
+	</div>
+
+{% endblock %}

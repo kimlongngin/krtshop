@@ -1,0 +1,134 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Save list {% endblock %}
+
+{% block body %}
+	
+	<div>
+		{% if all_customer %}
+		
+			{% if messages %}
+			    {% for message in messages %}
+			      <p class="bg-success">{{ message }}</p>
+			    {% endfor %}
+			{% endif %}	
+
+			<div class="home_title">
+				<p> <span class="glyphicon glyphicon-th-large">  </span> Save list </p>
+			</div>
+
+			<div class="search_bg_box" style="display: table;">
+				<form class="form-inline" action="{% url 'customer:search_save_list' %}" method="get" style="margin-top: 2px; ">
+						{% csrf_token %}
+					<div class="form-group">
+				      <input style="margin-left: 0px; padding-left: 10px; min-width: 250px;" type="text" class="form-control" name= "q" value="" placeholder="Enter name, phone number, email" >		
+				  	</div>
+				  	
+            		<div class="form-group">
+		                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" readonly style="min-width: 250px;" id="start_date" name = "start_date">
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+						<input type="hidden" id="dtp_input2" value="" /><br/>
+		            </div>
+
+		            <div class="form-group">
+		                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" readonly style="min-width: 250px;" id="end_date" name = "end_date">
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+						<input type="hidden" id="dtp_input2" value="" /><br/>
+		            </div>
+						
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Seach</button>
+				</form>
+			
+	        <script type="text/javascript">
+			    $('.form_datetime').datetimepicker({
+			        //language:  'fr',
+			        weekStart: 1,
+			        todayBtn:  1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+			        showMeridian: 1
+			    });
+				$('.form_date').datetimepicker({
+			        language:  'fr',
+			        weekStart: 1,
+			        todayBtn:  1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					minView: 2,
+					forceParse: 0
+			    });
+				$('.form_time').datetimepicker({
+			        language:  'fr',
+			        weekStart: 1,
+			        todayBtn:  1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 1,
+					minView: 0,
+					maxView: 1,
+					forceParse: 0
+			    });
+			</script>
+	        </div>
+	    {% else %}
+	    	<div style="text-align: center; margin-top: 20px;">
+	    		<h4 style="color:red;"> No save list. </h4>
+	    	</div>
+        {% endif %}
+
+        <div class="row row-no-gutters">
+			{% for i in all_customer %}
+
+				<div class="col-xs-12 col-sm-6 col-md-4">
+
+					<div class="bs-callout bs-callout-warning" id="callout-helper-context-color-accessibility" style="padding: 5px; margin: 5px;">
+						<h4> {{ i.invoice_number }} </h4>
+						<p> <span style="font-weight: bold;">Bought at:</span> <span style="font-style: italic; ">{{ i.created_at }}</span> </p>
+
+						<a href="{% url 'customer:save_payment' i.invoice_number %}" type="button" class="btn btn-success"> <span class="glyphicon glyphicon-pencil"></span> Detail</a>
+						{% if request.user.is_superuser %}
+							<a href="{% url 'customer:delete_save' i.id %}" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+						{% endif %}
+
+					</div>
+				</div>
+				
+			{% endfor %}
+		</div>
+	</div>
+
+
+	
+
+	<div class="pagination_index">
+		{% if is_paginated %}
+			<hr/>
+				<ul class="pagination" style="margin:0px 0px !important">
+			{% if page_obj.has_previous %}
+			    <li>
+			        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+			    </li>
+			{% endif %}
+			    <li class="">
+			        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+			    </li>
+			{% if page_obj.has_next %}
+			    <li>
+			        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+			    </li>
+			{% endif %}
+			</ul>
+		
+		{% endif %}
+	</div>
+
+{% endblock %}

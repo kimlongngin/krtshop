@@ -1,0 +1,97 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+
+
+	<div>
+		<div class="home_title" style="margin-bottom: 20px;">
+			<span class="glyphicon glyphicon-user" style="color: #aa6708 !important;"></span> <span style="color:#aa6708 !important;">Users list</span>
+	</div>
+
+	{% if list_user %}
+		<div class="row">
+			{%  for iuser in list_user %}
+				{% if iuser.usercontrol_set.all.count > 0 %}
+					<div class="col-xs-12 col-md-4" >
+			            <div class="card mb-4 box-shadow user_profile"  style="border:1px solid #aa6708 !important;">
+
+			            	<div class="user_name" style="border-bottom: 1px solid #aa6708 !important;">
+			            		{% if iuser.first_name or iuser.last_name %}
+									<p style="color: #aa6708 !important;">More about {{ iuser.first_name }}</p>
+								{% else %}
+									<p style="color: #aa6708 !important;">More about {{ iuser.username }}</p>
+			            		{% endif %}
+			            	</div>
+
+								{% for i in iuser.usercontrol_set.all %}
+				            		<div class="user_avatar">
+										{% if i.avatar %}
+											<div class="user_avatar_wrapper">
+												<div class="user_avatar_image">
+													<img src = "../../../{{ i.avatar.url }}" class="img-responsive user_avatar_image ">
+												</div>
+											</div>
+										{% else %}
+											<div class="user_avatar_wrapper">
+												<div class="user_avatar_image">
+													<img src = "../../static/image/user-icon-image-placeholder.jpg" class=" img-responsive user_avatar_image ">
+												</div>
+											</div>
+										{% endif %}
+										
+										<p class="user_avatar_name"> 
+					            			{% if iuser.first_name or iuser.last_name %}
+					            				{{ iuser.first_name }} {{ iuser.last_name }}
+					            			{% else %}
+					            				{{ iuser.username }}
+					            			{% endif %}
+						            	</p>
+										<div class="user_sub_detail" style="text-align: center; margin-bottom: 15px; height: 55px;"> 
+											<p style="margin:auto; text-align: center;" >
+												Age: {{ i.age }} years old, 
+												
+												{% if iuser.sale_invoice_user.all.count > 0 %}
+													<a href="{% url 'usercontrol:list_user_invoice' iuser.id %}">
+														{% if iuser.sale_invoice_user.all.count > 1 %}
+															<code> <span class="badge"></span> {{ iuser.sale_invoice_user.all.count }} invoices </code>
+														{% else %}
+															<code> <span class="badge"></span> {{ iuser.sale_invoice_user.all.count }} invoice </code>
+														{% endif %}
+													</a>
+												{% else %}
+													<code> <span class="badge"></span>0 invoice</code>
+												{% endif %}
+												
+											</p>
+										</div>
+
+				            		</div>
+			                	
+					                <div class="card-body user_detail">
+					                	<p class="card-text"> <span style="font-weight: bold;">Present address: </span> {{ i.present_address }}, <span style="font-weight: bold;">Phone:</span> {{ i.phone_number }}, <span style="font-weight: bold;">Email:</span> {{ i.email }} </p>
+					                </div>
+				                {% endfor %}
+			            </div>
+			        </div>
+
+		        {% endif %}
+		    {% endfor %}
+		</div>
+	{% else %}
+		<div style="margin:auto;">
+			<h3>No user</h3>
+		</div>
+	{% endif %}
+
+	{% block javascript %}
+		<script type="text/javascript">
+
+			$('#1').on('show.bs.modal');
+
+		</script>
+
+	{% endblock %}
+
+{% endblock %}
